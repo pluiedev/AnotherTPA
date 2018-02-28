@@ -1,6 +1,6 @@
 name: AnotherTPA
 main: com.leocth.anothertpa.AnotherTPA
-version: 1.0-PUBLIC
+version: 1.0.001
 commands:
    atpa:
       description: Send a teleport request to a player.

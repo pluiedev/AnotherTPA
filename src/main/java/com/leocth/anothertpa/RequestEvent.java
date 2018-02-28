@@ -25,7 +25,7 @@ public class RequestEvent {
 	}
 	public void accept() {
 		sender.sendMessage(target.getName() + " " + AnotherTPA.messages.get("anothertpa.lang.accepted"));
-		
+		target.sendMessage(AnotherTPA.messages.get("anothertpa.lang.accept-after-info"));
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
@@ -39,6 +39,7 @@ public class RequestEvent {
 	}
 	public void deny() {
 		sender.sendMessage(target.getName() + " " + AnotherTPA.messages.get("anothertpa.lang.denied"));
+		target.sendMessage(AnotherTPA.messages.get("anothertpa.lang.deny-after-info"));
 		target.event = null;
 	}
 

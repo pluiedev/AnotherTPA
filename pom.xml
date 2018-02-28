@@ -2,7 +2,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.leocth</groupId>
   <artifactId>AnotherTPA</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   
    <build>
       <plugins>
@@ -39,4 +38,5 @@
        </dependency>
        
    </dependencies>
+   <version>1.1.0</version>
 </project>

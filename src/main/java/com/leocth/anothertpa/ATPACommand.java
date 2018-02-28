@@ -22,7 +22,6 @@ import org.bukkit.command.CommandSender;
 public final class ATPACommand implements CommandExecutor{
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		System.out.println(sender);
 		if (sender instanceof org.bukkit.entity.Player) {
 			Player player = AnotherTPA.onlineplayers.get(((org.bukkit.entity.Player) sender).getUniqueId());
 
@@ -35,10 +34,15 @@ public final class ATPACommand implements CommandExecutor{
 				return false;
 			}
 			Player target = AnotherTPA.onlineplayers.get((Bukkit.getServer().getPlayer(args[0]).getUniqueId()));
-				
+			if (target.getNestedPlayer().getUniqueId().equals(player.getNestedPlayer().getUniqueId())) {
+				sender.sendMessage(AnotherTPA.messages.get("anothertpa.lang.self-tp"));
+				return false;
+			}
 			if (target.event != null) {
 				sender.sendMessage(target.getName() + " " + AnotherTPA.messages.get("anothertpa.lang.request-full"));
+				return false;
 			}
+			sender.sendMessage(AnotherTPA.messages.get("anothertpa.lang.request-success") + " " + target.getName());
 			player.sendRequest(target);
 			return true;
 		}

@@ -1,9 +1,5 @@
 package com.leocth.anothertpa;
 
-import org.bukkit.Bukkit;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-
 /*
  * Do not treat my code as trash, because I'm a n00b /Slap-on-my-face/
  *  

@@ -23,14 +23,14 @@ public final class AcceptCommand implements CommandExecutor {
 		if (sender instanceof org.bukkit.entity.Player) {
 			Player player = AnotherTPA.onlineplayers.get(((org.bukkit.entity.Player) sender).getUniqueId());
 			if (player.event == null) {
-				sender.sendMessage(AnotherTPA.messages.get("anothertpa.lang.no-pending-request"));
+				sender.sendMessage(I18n.g("no-pending-request"));
 				return false;
 			}
 			player.event.accept();
 			return true;
 		}
 		else {
-			sender.sendMessage(AnotherTPA.messages.get("anothertpa.lang.not-player"));
+			sender.sendMessage(I18n.g("not-player"));
 			return false;
 		}
 	}

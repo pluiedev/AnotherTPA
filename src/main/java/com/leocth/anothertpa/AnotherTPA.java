@@ -42,11 +42,15 @@ public final class AnotherTPA extends JavaPlugin implements Listener {
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
 		logger = getLogger();
+		new I18n(getConfig().getString("anothertpa.lang"));
 		loadConfig();
 		saveDefaultConfig();
 		getCommand("atpa").setExecutor(new ATPACommand());
         getCommand("atpac").setExecutor(new AcceptCommand());
         getCommand("atpad").setExecutor(new DenyCommand());
+	}
+	@Override
+	public void onDisable() {
 	}
 	private void loadConfig() {
 		cooldown = getConfig().getInt("anothertpa.cooldown", 50); //TODO Not fully implemented

@@ -44,7 +44,6 @@ public class Player {
 	
     public void gotRequest(RequestEvent event) {
         this.event = event;
-        this.sendMessage(event.sender.getName() + " " + AnotherTPA.messages.get("anothertpa.lang.request-1"));
-		this.sendMessage(AnotherTPA.messages.get("anothertpa.lang.request-2"));
+        this.sendMessage(I18n.g("request", event.sender.getName()));
     }
 }

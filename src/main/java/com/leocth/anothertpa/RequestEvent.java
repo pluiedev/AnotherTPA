@@ -1,6 +1,7 @@
 package com.leocth.anothertpa;
 
-import java.util.*;
+import java.util.Timer;
+import java.util.TimerTask;
 /*
  * Do not criticize my code, I'm a newcomer /Slap-on-my-face/
  *  
@@ -16,7 +17,6 @@ import java.util.*;
  */
 public class RequestEvent {
 	public Player sender, target;
-	public boolean result;
 	
 	public RequestEvent(Player p1, Player p2) {
 		sender = p1;
@@ -24,8 +24,8 @@ public class RequestEvent {
 		
 	}
 	public void accept() {
-		sender.sendMessage(target.getName() + " " + AnotherTPA.messages.get("anothertpa.lang.accepted"));
-		target.sendMessage(AnotherTPA.messages.get("anothertpa.lang.accept-after-info"));
+		sender.sendMessage(I18n.g("accepted", target.getName()));
+		target.sendMessage(I18n.g("accept-after-info"));
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
@@ -38,8 +38,8 @@ public class RequestEvent {
 		}, 3000);
 	}
 	public void deny() {
-		sender.sendMessage(target.getName() + " " + AnotherTPA.messages.get("anothertpa.lang.denied"));
-		target.sendMessage(AnotherTPA.messages.get("anothertpa.lang.deny-after-info"));
+		sender.sendMessage(I18n.g("denied", target.getName()));
+		target.sendMessage(I18n.g("deny-after-info"));
 		target.event = null;
 	}
 

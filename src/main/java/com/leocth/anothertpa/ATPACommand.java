@@ -26,28 +26,28 @@ public final class ATPACommand implements CommandExecutor{
 			Player player = AnotherTPA.onlineplayers.get(((org.bukkit.entity.Player) sender).getUniqueId());
 
 			if (args.length != 1) {
-				sender.sendMessage(AnotherTPA.messages.get("anothertpa.lang.illegal-arguments"));
+				sender.sendMessage(I18n.g("illegal-arguments"));
 				return false;
 			}
 			if (Bukkit.getServer().getPlayer(args[0]) == null) {
-				sender.sendMessage(AnotherTPA.messages.get("anothertpa.lang.not-online"));
+				sender.sendMessage(I18n.g("not-online", args[0]));
 				return false;
 			}
 			Player target = AnotherTPA.onlineplayers.get((Bukkit.getServer().getPlayer(args[0]).getUniqueId()));
 			if (target.getNestedPlayer().getUniqueId().equals(player.getNestedPlayer().getUniqueId())) {
-				sender.sendMessage(AnotherTPA.messages.get("anothertpa.lang.self-tp"));
+				sender.sendMessage(I18n.g("self-tp"));
 				return false;
 			}
 			if (target.event != null) {
-				sender.sendMessage(target.getName() + " " + AnotherTPA.messages.get("anothertpa.lang.request-full"));
+				sender.sendMessage(I18n.g("request-full", target.getName()));
 				return false;
 			}
-			sender.sendMessage(AnotherTPA.messages.get("anothertpa.lang.request-success") + " " + target.getName());
+			sender.sendMessage(I18n.g("request-success", target.getName()));
 			player.sendRequest(target);
 			return true;
 		}
 		else {
-			sender.sendMessage(AnotherTPA.messages.get("anothertpa.lang.not-player"));
+			sender.sendMessage(I18n.g("not-player"));
 			return false;
 		}
 	}

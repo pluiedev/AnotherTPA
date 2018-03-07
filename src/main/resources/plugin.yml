@@ -1,9 +1,9 @@
 name: AnotherTPA
 main: com.leocth.anothertpa.AnotherTPA
-version: 1.2.0
+version: 1.3.0
 commands:
    atpa:
-      description: Send a teleport request to a player.
+      description: Request to teleport to a player.
       usage: /atpa [player]
       permission: anothertpa.tpa
       permission-message: You don't have the permission to access this command.
@@ -15,5 +15,10 @@ commands:
    atpad:
       description: Deny a pending teleport request.
       usage: /atpad [player]
+      permission: anothertpa.tpa
+      permission-message: You don't have the permission to access this command.
+   atpah:
+      description: Request a player to teleport to you.
+      usage: /atpah [player]
       permission: anothertpa.tpa
       permission-message: You don't have the permission to access this command.

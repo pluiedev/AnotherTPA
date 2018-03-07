@@ -42,6 +42,4 @@ public class RequestEvent {
 		target.sendMessage(I18n.g("deny-after-info"));
 		target.event = null;
 	}
-
-
 }

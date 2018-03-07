@@ -28,6 +28,12 @@ public class Player {
 			target.gotRequest(event);
 		}
 	}
+    public void sendRequestTpHere(Player target) {
+        RequestEvent event = new TphereRequestEvent(this, target);
+        if (AnotherTPA.onlineplayers.containsKey(target.getNestedPlayer().getUniqueId())) {
+            target.gotRequestTpHere(event);
+        }
+    }
 	
 	public org.bukkit.entity.Player getNestedPlayer() {
 		return nestedPlayer;
@@ -46,4 +52,8 @@ public class Player {
         this.event = event;
         this.sendMessage(I18n.g("request", event.sender.getName()));
     }
+	public void gotRequestTpHere(RequestEvent event) {
+		this.event = event;
+		this.sendMessage(I18n.g("request-tphere", event.sender.getName()));
+	}
 }

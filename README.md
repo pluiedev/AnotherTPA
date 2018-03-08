@@ -1,5 +1,5 @@
 # AnotherTPA
 Just a junk re-write of the /tpa command in plugin Essentials.
 
-for Minecraft version 1.10.2! XD
+This branch is for MC 1.8!!! 
 LOLOLOLOLOLOLOLOLOLx

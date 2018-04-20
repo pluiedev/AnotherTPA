@@ -5,6 +5,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+import java.util.Date;
+import java.util.Map;
+
 public class TpHereCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -24,12 +27,17 @@ public class TpHereCommand implements CommandExecutor {
                 sender.sendMessage(I18n.g("self-tp"));
                 return false;
             }
-            if (target.event != null) {
-                sender.sendMessage(I18n.g("request-full", target.getName()));
-                return false;
-            }
             sender.sendMessage(I18n.g("request-success", target.getName()));
-            player.sendRequestTpHere(target);
+            boolean isDuplicated = false;
+            for (Map.Entry<Date, RequestEvent> entry : target.requests.entrySet()) {
+                System.out.println(entry.getValue().sender.getName() + " " + player.getName());
+                if (entry.getValue().sender.getName().equals(player.getName())) {
+                    isDuplicated = true;
+                }
+            }
+            if (!isDuplicated) {
+                player.sendRequestTpHere(target);
+            }
             return true;
         }
         else {

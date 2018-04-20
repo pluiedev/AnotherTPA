@@ -8,6 +8,12 @@ package com.leocth.anothertpa;
  * ------------------------------------------------------
  * Don't steal PLZ!!!
  */
+
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * ATPA's Custom player.
  * @author LeoC200
@@ -15,21 +21,21 @@ package com.leocth.anothertpa;
  */
 public class Player {
 	private org.bukkit.entity.Player nestedPlayer;
-	public RequestEvent event = null;
 	public int cooldown = 0;//TODO Not fully implemented
+    public HashMap<Date, RequestEvent> requests = new HashMap<>();
 	
 	public Player(org.bukkit.entity.Player player) {
 		nestedPlayer = player;
 	}
 	
 	public void sendRequest(Player target) {
-		RequestEvent event = new RequestEvent(this, target);
+        RequestEvent event = new RequestEvent(this, target, GregorianCalendar.getInstance().getTime());
 		if (AnotherTPA.onlineplayers.containsKey(target.getNestedPlayer().getUniqueId())) {
 			target.gotRequest(event);
 		}
 	}
     public void sendRequestTpHere(Player target) {
-        RequestEvent event = new TphereRequestEvent(this, target);
+        TphereRequestEvent event = new TphereRequestEvent(this, target, GregorianCalendar.getInstance().getTime());
         if (AnotherTPA.onlineplayers.containsKey(target.getNestedPlayer().getUniqueId())) {
             target.gotRequestTpHere(event);
         }
@@ -49,11 +55,29 @@ public class Player {
 	}
 	
     public void gotRequest(RequestEvent event) {
-        this.event = event;
+        requests.put(event.createdDate, event);
         this.sendMessage(I18n.g("request", event.sender.getName()));
     }
-	public void gotRequestTpHere(RequestEvent event) {
-		this.event = event;
+
+    public void gotRequestTpHere(TphereRequestEvent event) {
+        requests.put(event.createdDate, event);
 		this.sendMessage(I18n.g("request-tphere", event.sender.getName()));
 	}
+
+    //Helper method
+    public RequestEvent mostRecent() {
+        boolean first = true; // used to identify the first element
+        RequestEvent curMostRecent = null; // this will, theoretically, NEVER causes a NPE.
+        for (Map.Entry<Date, RequestEvent> entry : requests.entrySet()) {
+            if (first) {
+                curMostRecent = entry.getValue();
+                first = false;
+            }
+            if (entry.getKey().before(curMostRecent.createdDate)) {
+                curMostRecent = entry.getValue();
+            }
+        }
+        System.out.println(curMostRecent.sender.getName() + curMostRecent.target.getName());
+        return curMostRecent;
+    }
 }

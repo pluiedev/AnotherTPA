@@ -26,7 +26,6 @@ import java.util.logging.Logger;
 public final class AnotherTPA extends JavaPlugin implements Listener {
 	public static HashMap<UUID, Player> onlineplayers = new HashMap<>();
 	public static int cooldown; //TODO Not fully implemented
-	public static HashMap<String, String> messages = new HashMap<>();
 	public static Logger logger;
 	
 	
@@ -54,6 +53,6 @@ public final class AnotherTPA extends JavaPlugin implements Listener {
 	public void onDisable() {
 	}
 	private void loadConfig() {
-		cooldown = getConfig().getInt("anothertpa.cooldown", 50); //TODO Not fully implemented
+		cooldown = getConfig().getInt("anothertpa.cooldown", 5); //TODO Not fully implemented
 	}
 }
